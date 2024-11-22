@@ -33,10 +33,6 @@ export class Producto extends Document {
   @Prop()
   pro_estado : boolean
 
-  @Field( () => String, { nullable: true })
-  @Prop()
-  pro_imagen?: string
-
   @Field( () => String )
   @Prop()
   pro_seccion : string
