@@ -9,6 +9,7 @@ import { ProductoModule } from './producto/producto.module';
 import { PersonaModule } from './persona/persona.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { MasterModule } from './master/master.module';
 
 @Module({
   imports: [
@@ -26,7 +27,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 
     PersonaModule,
 
-    UsuarioModule
+    UsuarioModule,
+
+    MasterModule
 
   ],
   controllers: [],
