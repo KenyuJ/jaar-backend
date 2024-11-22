@@ -66,6 +66,7 @@ export class ProductoService {
 
     if (!producto)
     {
+      term = term.toUpperCase()
       producto = await this.productoModel.findOne({ pro_nombre : term })  
     }
 

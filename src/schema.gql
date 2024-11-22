@@ -49,6 +49,17 @@ type Master {
   mas_incremento: Int!
 }
 
+type DetalleVenta {
+  det_id: ID!
+  det_subtotal: Float!
+  det_total: Float!
+  det_estado: Boolean!
+  producto: Producto
+  pro_talla: Int!
+  pro_cantidad: Int!
+  pro_precio: Float!
+}
+
 type Query {
   """Retorna todos los productos de estado TRUE"""
   AllProducts: [Producto!]!
@@ -66,6 +77,8 @@ type Query {
 
   """Devuelve una configuración por su ID o Nombre."""
   FindOneMaster(term: String!): Master!
+  detalleVenta: [DetalleVenta!]!
+  findOneDetalleVenta(id: String!): DetalleVenta!
 }
 
 type Mutation {
@@ -81,6 +94,7 @@ type Mutation {
   """Actualiza una configuración por su ID"""
   updateMaster(updateMasterInput: UpdateMasterInput!): Master!
   removeMaster(id: String!): Master!
+  createDetalleVenta(createDetalleVentaInput: CreateDetalleVentaInput!): DetalleVenta!
 }
 
 input CreateProductoInput {
@@ -179,4 +193,12 @@ input UpdateMasterInput {
   mas_serie: Int
   mas_incremento: Int
   _id: ID!
+}
+
+input CreateDetalleVentaInput {
+  pro_id: ID!
+  pro_cantidad: Int!
+
+  """El valor por defecto es TRUE."""
+  det_estado: Boolean = true
 }
