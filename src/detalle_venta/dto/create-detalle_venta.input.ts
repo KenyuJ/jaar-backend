@@ -3,10 +3,6 @@ import { IsBoolean, Min, MinLength } from 'class-validator';
 
 @InputType()
 export class CreateDetalleVentaInput {
-  
-  // @Field( () => ID )
-  // @MinLength(1)
-  // ven_id: string
 
   @Field( () => ID )
   @MinLength(1)

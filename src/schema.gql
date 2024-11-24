@@ -36,7 +36,6 @@ type Persona {
 type Usuario {
   usu_id: ID!
   usu_nombre: String!
-  usu_clave: String!
   usu_tipo_usuario: String!
   usu_estado: Boolean!
   persona: Persona
@@ -60,41 +59,57 @@ type DetalleVenta {
   pro_precio: Float!
 }
 
+type Venta {
+  ven_id: ID!
+  ven_fecha: DateTime!
+  ven_total: Float!
+  ven_tipo_pago: String!
+  usuario: Usuario!
+  detalle_venta: [DetalleVenta!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   """Retorna todos los productos de estado TRUE"""
-  AllProducts: [Producto!]!
+  ProductAll: [Producto!]!
 
   """Retorna un producto por su ID o NOMBRE."""
-  ProductoByIDorName(term: String!): Producto!
+  ProductFindOne(term: String!): Producto!
 
   """Retorna todas las tallas disponibles."""
-  AllTallas: [Talla!]!
+  TallaAll: [Talla!]!
 
   """Retornar todos los usuarios con su relación de Persona de estado TRUE."""
-  AllUsuarios: [Usuario!]!
-  findUsuarioByID(id: String!): Usuario!
-  AllMaster: [Master!]!
+  UsuariosAll: [Usuario!]!
+
+  """Retonar un usuario por su ID."""
+  UsuarioFindOne(id: String!): Usuario!
+  MasterAll: [Master!]!
 
   """Devuelve una configuración por su ID o Nombre."""
-  FindOneMaster(term: String!): Master!
-  detalleVenta: [DetalleVenta!]!
-  findOneDetalleVenta(id: String!): DetalleVenta!
+  MasterFindOne(term: String!): Master!
+  VentaAll: [Venta!]!
+  VentaFindOne(id: String!): Venta!
 }
 
 type Mutation {
-  NewProduct(createProductoInput: CreateProductoInput!): Producto!
-  UpdateProduct(updateProductoInput: UpdateProductoInput!): Producto!
+  ProductCreate(createProductoInput: CreateProductoInput!): Producto!
+  ProductUpdate(updateProductoInput: UpdateProductoInput!): Producto!
 
   """Actualiza el estado del producto a FALSE"""
-  RemoveProduct(id: String!): Producto!
-  createUsuario(createUsuarioInput: CreateUsuarioInput!): Usuario!
-  updateUsuario(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
-  createMaster(createMasterInput: CreateMasterInput!): Master!
+  ProductRemove(id: String!): Producto!
+  UsuarioCreate(createUsuarioInput: CreateUsuarioInput!): Usuario!
+  UsuarioUpdate(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
+  MasterCreate(createMasterInput: CreateMasterInput!): Master!
 
   """Actualiza una configuración por su ID"""
-  updateMaster(updateMasterInput: UpdateMasterInput!): Master!
-  removeMaster(id: String!): Master!
-  createDetalleVenta(createDetalleVentaInput: CreateDetalleVentaInput!): DetalleVenta!
+  MasterUpdate(updateMasterInput: UpdateMasterInput!): Master!
+  MasterRemove(id: String!): Master!
+  VentaCreate(createVentaInput: CreateVentaInput!): Venta!
 }
 
 input CreateProductoInput {
@@ -193,6 +208,12 @@ input UpdateMasterInput {
   mas_serie: Int
   mas_incremento: Int
   _id: ID!
+}
+
+input CreateVentaInput {
+  ven_tipo_pago: String!
+  usu_id: ID
+  detalle_venta: [CreateDetalleVentaInput!]!
 }
 
 input CreateDetalleVentaInput {

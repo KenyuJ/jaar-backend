@@ -31,7 +31,7 @@ export class UsuarioService {
       persona : newPersona
     })
 
-    return newUsuario.save()
+    return await newUsuario.save()
   }
 
   async findAll() : Promise<Usuario[]> 
@@ -68,7 +68,7 @@ export class UsuarioService {
     return usuarioUpdated
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} usuario`;
+  // }
 }

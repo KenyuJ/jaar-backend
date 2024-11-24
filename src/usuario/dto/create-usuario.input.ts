@@ -1,5 +1,6 @@
 import { InputType, Int, Field, ID } from '@nestjs/graphql';
-import { IsBoolean, IsIn, IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsIn, IsNotEmpty, IsString, MinLength, ValidateNested } from 'class-validator';
 import { CreatePersonaInput } from 'src/persona/dto/create-persona.input';
 import { Persona } from 'src/persona/entities/persona.entity';
 
@@ -27,6 +28,8 @@ export class CreateUsuarioInput {
   usu_estado : boolean
 
   @Field( () => CreatePersonaInput )
+  @Type( () => CreatePersonaInput )
+  @ValidateNested()
   persona : Persona
 
 }

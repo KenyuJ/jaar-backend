@@ -16,5 +16,6 @@ import { ProductoModule } from 'src/producto/producto.module';
     ProductoModule
   ],
   providers: [DetalleVentaResolver, DetalleVentaService],
+  exports:  [ MongooseModule, DetalleVentaService ]
 })
 export class DetalleVentaModule {}

@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document, Types } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { Producto } from 'src/producto/entities/producto.entity';
 
 @ObjectType()
@@ -37,10 +37,6 @@ export class DetalleVenta extends Document {
   @Field( () => Float )
   @Prop({ required: true })
   pro_precio : number
-    
-  // @Field( () => ID)
-  // @Prop({ type: Types.ObjectId, ref: 'Venta' })
-  // ven_id : string
 }
 
 export const detalleVentaSchema = SchemaFactory.createForClass(DetalleVenta);

@@ -8,30 +8,30 @@ import { UpdateMasterInput } from './dto/update-master.input';
 export class MasterResolver {
   constructor(private readonly masterService: MasterService) {}
 
-  @Mutation(() => Master)
+  @Mutation(() => Master, { name: 'MasterCreate' })
   async createMaster(@Args('createMasterInput') createMasterInput: CreateMasterInput) : Promise<Master>
   {
     return await this.masterService.create(createMasterInput);
   }
 
-  @Query(() => [Master], { name: 'AllMaster' })
+  @Query(() => [Master], { name: 'MasterAll' })
   async findAll() : Promise<Master[]>
   {
     return await this.masterService.findAll();
   }
 
-  @Query(() => Master, { name: 'FindOneMaster' , description: 'Devuelve una configuración por su ID o Nombre.' })
+  @Query(() => Master, { name: 'MasterFindOne' , description: 'Devuelve una configuración por su ID o Nombre.' })
   findOne(@Args('term', { type: () => String }) term: string) {
     return this.masterService.findOne(term);
   }
 
-  @Mutation(() => Master, { description: 'Actualiza una configuración por su ID'})
+  @Mutation(() => Master, { name: 'MasterUpdate' ,description: 'Actualiza una configuración por su ID'})
   async updateMaster(@Args('updateMasterInput') updateMasterInput: UpdateMasterInput) : Promise<Master>
   {
     return await this.masterService.update(updateMasterInput);
   }
 
-  @Mutation(() => Master)
+  @Mutation(() => Master, { name: 'MasterRemove' })
   removeMaster(@Args('id', { type: () => String }) id: string) {
     return this.masterService.remove(id);
   }
