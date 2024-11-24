@@ -9,25 +9,25 @@ export class UsuarioResolver {
   
   constructor(private readonly usuarioService: UsuarioService) {}
 
-  @Mutation(() => Usuario)
+  @Mutation(() => Usuario, { name: 'UsuarioCreate' })
   async createUsuario(@Args('createUsuarioInput') createUsuarioInput: CreateUsuarioInput) : Promise<Usuario>
   {
     return await this.usuarioService.create(createUsuarioInput);
   }
 
-  @Query(() => [Usuario], { name: 'AllUsuarios' , description: 'Retornar todos los usuarios con su relación de Persona de estado TRUE.'})
+  @Query(() => [Usuario], { name: 'UsuariosAll' , description: 'Retornar todos los usuarios con su relación de Persona de estado TRUE.'})
   async findAll() : Promise<Usuario[]>
   {
     return await this.usuarioService.findAll();
   }
 
-  @Query(() => Usuario, { name: 'findUsuarioByID' })
+  @Query(() => Usuario, { name: 'UsuarioFindOne', description: 'Retonar un usuario por su ID.' })
   async findOne(@Args('id', { type: () => String }) id: string) : Promise<Usuario>
   {
     return await this.usuarioService.findOne(id);
   }
 
-  @Mutation(() => Usuario)
+  @Mutation(() => Usuario, { name:'UsuarioUpdate' })
   async updateUsuario(@Args('updateUsuarioInput') updateUsuarioInput: UpdateUsuarioInput) : Promise<Usuario>
   {
     return await this.usuarioService.update(updateUsuarioInput);

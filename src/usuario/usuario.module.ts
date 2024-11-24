@@ -3,7 +3,6 @@ import { UsuarioService } from './usuario.service';
 import { UsuarioResolver } from './usuario.resolver';
 import { Usuario, usuarioSchema } from './entities/usuario.entity';
 import { PersonaModule } from 'src/persona/persona.module';
-import { Persona } from 'src/persona/entities/persona.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
@@ -19,6 +18,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     PersonaModule
   ],
   providers: [UsuarioResolver, UsuarioService],
-  exports: []
+  exports: [
+    MongooseModule,
+    UsuarioService
+  ]
 })
 export class UsuarioModule {}

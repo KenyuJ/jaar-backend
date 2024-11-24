@@ -10,6 +10,8 @@ import { PersonaModule } from './persona/persona.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MasterModule } from './master/master.module';
+import { DetalleVentaModule } from './detalle_venta/detalle_venta.module';
+import { VentaModule } from './venta/venta.module';
 
 @Module({
   imports: [
@@ -29,7 +31,11 @@ import { MasterModule } from './master/master.module';
 
     UsuarioModule,
 
-    MasterModule
+    MasterModule,
+
+    DetalleVentaModule,
+
+    VentaModule
 
   ],
   controllers: [],

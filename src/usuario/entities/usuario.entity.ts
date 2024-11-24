@@ -14,7 +14,6 @@ export class Usuario extends Document {
   @Prop({ unique: true })
   usu_nombre : string
 
-  @Field(() => String)
   @Prop()
   usu_clave : string
 
