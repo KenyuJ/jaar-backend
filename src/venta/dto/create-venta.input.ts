@@ -1,15 +1,16 @@
 import { Field, ID, InputType } from "@nestjs/graphql";
 import { Type } from "class-transformer";
-import { IsIn, IsString, MinLength, ValidateNested } from "class-validator";
+import { IsEnum, IsIn, IsString, MinLength, ValidateNested } from "class-validator";
 import { CreateDetalleVentaInput } from "src/detalle_venta/dto/create-detalle_venta.input";
+import { VentaTipoPago } from "src/common/enums/venta/venta-tipo-pago.enum";
 
 @InputType()
 export class CreateVentaInput  {
 
-    @Field( () => String)
+    @Field( () => VentaTipoPago)
     @IsString()
     @MinLength(1)
-    @IsIn(['EFECTIVO', 'CREDITO'])
+    @IsEnum(VentaTipoPago)
     ven_tipo_pago : string
 
     @Field( () => ID )

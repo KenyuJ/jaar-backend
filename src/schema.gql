@@ -21,31 +21,62 @@ type Persona {
   per_id: ID!
   per_nombre: String!
   per_apellido: String!
-  per_sexo: String!
+  per_sexo: PersonaGenero!
   per_telefono: String!
   per_email: String!
   per_direccion: String
   per_razon_social: String!
-  per_tipo_persona: String!
-  per_rol: String!
-  per_tipo_identificacion: String!
+  per_tipo: PersonaTipo!
+  per_rol: PersonaRol!
+  per_tipo_identificacion: PersonaTipoDocumento!
   per_num_identificacion: String!
   per_estado: Boolean!
+}
+
+"""Tipos de generos permitidos para persona."""
+enum PersonaGenero {
+  MASCULINO
+  FEMENINO
+  OTRO
+}
+
+"""Tipos de persona permitidos."""
+enum PersonaTipo {
+  CLIENTE
+  PROVEEDOR
+  EMPLEADO
+}
+
+"""Roles de persona permitidos"""
+enum PersonaRol {
+  USUARIO
+}
+
+"""Tipos de documentos permitidos para persona."""
+enum PersonaTipoDocumento {
+  DNI
+  RUC
 }
 
 type Usuario {
   usu_id: ID!
   usu_nombre: String!
-  usu_tipo_usuario: String!
+  usu_tipo: UsuarioTipo!
   usu_estado: Boolean!
   persona: Persona
+}
+
+"""Tipos de usuario permitidos."""
+enum UsuarioTipo {
+  CAJA
+  ADMINISTRADOR
 }
 
 type Master {
   mas_id: ID!
   mas_nombre: String!
   mas_serie: Int!
-  mas_incremento: Int!
+  mas_nro: Int!
 }
 
 type DetalleVenta {
@@ -63,7 +94,7 @@ type Venta {
   ven_id: ID!
   ven_fecha: DateTime!
   ven_total: Float!
-  ven_tipo_pago: String!
+  ven_tipo_pago: VentaTipoPago!
   usuario: Usuario!
   detalle_venta: [DetalleVenta!]!
 }
@@ -73,15 +104,26 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""Tipos de pago permitidos para venta."""
+enum VentaTipoPago {
+  EFECTIVO
+  CREDITO
+}
+
 type Comprobante {
   com_id: ID!
   com_serie: Int!
   com_numero: Int!
-  com_tipo: String!
+  com_tipo: ComprobanteTipo!
   com_fecha_emision: DateTime!
-  usuario: Usuario!
   venta: Venta!
   com_estado: Boolean!
+}
+
+"""Tipos de comprobantes permitidos."""
+enum ComprobanteTipo {
+  BOLETA
+  FACTURA
 }
 
 type Query {
@@ -152,7 +194,7 @@ input UpdateProductoInput {
 input CreateUsuarioInput {
   usu_nombre: String!
   usu_clave: String!
-  usu_tipo_usuario: String!
+  usu_tipo: PersonaTipo!
   persona: CreatePersonaInput!
 }
 
@@ -164,8 +206,8 @@ input CreatePersonaInput {
   per_email: String!
   per_direccion: String
   per_razon_social: String!
-  per_tipo_persona: String!
-  per_rol: String!
+  per_tipo: PersonaTipo!
+  per_rol: PersonaRol!
   per_tipo_identificacion: String!
   per_num_identificacion: String!
 }
@@ -173,7 +215,7 @@ input CreatePersonaInput {
 input UpdateUsuarioInput {
   usu_nombre: String
   usu_clave: String
-  usu_tipo_usuario: String
+  usu_tipo: PersonaTipo
   persona: UpdatePersonaInput
   _id: ID!
 }
@@ -186,8 +228,8 @@ input UpdatePersonaInput {
   per_email: String
   per_direccion: String
   per_razon_social: String
-  per_tipo_persona: String
-  per_rol: String
+  per_tipo: PersonaTipo
+  per_rol: PersonaRol
   per_tipo_identificacion: String
   per_num_identificacion: String
   _id: ID
@@ -196,18 +238,18 @@ input UpdatePersonaInput {
 input CreateMasterInput {
   mas_nombre: String!
   mas_serie: Int!
-  mas_incremento: Int!
+  mas_nro: Int!
 }
 
 input UpdateMasterInput {
   mas_nombre: String
   mas_serie: Int
-  mas_incremento: Int
+  mas_nro: Int
   _id: ID!
 }
 
 input CreateVentaInput {
-  ven_tipo_pago: String!
+  ven_tipo_pago: VentaTipoPago!
   usu_id: ID!
   detalle_venta: [CreateDetalleVentaInput!]!
 }

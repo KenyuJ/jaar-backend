@@ -20,7 +20,21 @@ export class ComprobanteService {
 
   async findAll() : Promise<Comprobante[]>
   {
-    return await this.comprobanteModel.find({ com_estado: true }).populate(['usuario', 'venta'])
+    return await this.comprobanteModel.find({ com_estado: true }).populate([
+      {
+        path: 'venta',
+        populate: [
+          {
+            path: 'usuario',
+            populate: 'persona'
+          },
+          { 
+          path: 'detalle_venta',
+          model: 'DetalleVenta',
+          populate: 'producto'
+        }]
+      }
+    ])
   }
 
   async create(createComprobanteInput: CreateComprobanteInput) : Promise<Comprobante>
@@ -35,7 +49,7 @@ export class ComprobanteService {
       com_fecha_emision: new Date(),
       com_tipo: configMaster.mas_nombre,
       com_serie: configMaster.mas_serie,
-      com_numero: configMaster.mas_incremento,
+      com_numero: configMaster.mas_nro,
       usuario: usuario._id,
       venta: venta._id
     })

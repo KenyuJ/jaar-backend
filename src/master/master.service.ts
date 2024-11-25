@@ -88,14 +88,12 @@ export class MasterService {
   {
     const configMaster = await this.findOne(id);
 
-    const incremento = configMaster.mas_incremento+1
+    const incremento = configMaster.mas_nro+1
   
-    const actualizado = await this.masterModel.findByIdAndUpdate(
+    await this.masterModel.findByIdAndUpdate(
       id,
-      { mas_incremento : incremento },
+      { mas_nro : incremento },
       { new: true }
     )
-
-    console.log(actualizado)
   }
 }
