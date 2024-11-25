@@ -54,7 +54,7 @@ export class Persona extends Document {
     per_num_identificacion : string
 
     @Field(() => Boolean)
-    @Prop()
+    @Prop({ default: true })
     per_estado : boolean
 
 }

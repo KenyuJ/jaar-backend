@@ -30,10 +30,6 @@ export class CreateProductoInput {
   @IsOptional()
   pro_cantidad? : number
 
-  @Field( () => Boolean, { nullable: true, defaultValue: true, description: 'El valor por defecto es TRUE.' })
-  @IsBoolean()
-  pro_estado : boolean
-
   @Field( () => String )
   @IsString()
   @MinLength(1, { message: 'Ingrese como minimo 1 caracter para el nombre de la sección.' })

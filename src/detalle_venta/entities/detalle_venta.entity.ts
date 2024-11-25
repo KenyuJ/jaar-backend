@@ -19,7 +19,7 @@ export class DetalleVenta extends Document {
   det_total : number
   
   @Field( () => Boolean )
-  @Prop({ required: true })
+  @Prop({ required: true, default: true })
   det_estado : boolean
   
   @Field( () => Producto, { nullable: true } )

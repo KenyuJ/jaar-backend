@@ -22,7 +22,7 @@ export class Usuario extends Document {
   usu_tipo_usuario : string
 
   @Field(() => Boolean)
-  @Prop()
+  @Prop({ default: true })
   usu_estado? : boolean
 
   @Field(() => Persona, { nullable: true })

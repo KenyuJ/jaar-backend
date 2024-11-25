@@ -12,7 +12,7 @@ export class CreateVentaInput  {
     @IsIn(['EFECTIVO', 'CREDITO'])
     ven_tipo_pago : string
 
-    @Field( () => ID, { nullable: true } )
+    @Field( () => ID )
     @IsString()
     @MinLength(1)
     usu_id : string

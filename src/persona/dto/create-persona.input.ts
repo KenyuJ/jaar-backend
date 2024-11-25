@@ -59,9 +59,4 @@ export class CreatePersonaInput {
     @MinLength(1)
     per_num_identificacion : string
 
-    @Field(() => Boolean, { nullable: true, defaultValue: true, description: 'El valor por defecto es TRUE.'})
-    @IsBoolean()
-    @IsNotEmpty()
-    per_estado : boolean
-
 }   

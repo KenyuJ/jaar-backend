@@ -1,39 +1,52 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
+import { Usuario } from "src/usuario/entities/usuario.entity";
+import { Venta } from "src/venta/entities/venta.entity";
 
+@ObjectType()
 @Schema() 
 export class Comprobante extends Document {
   
-    @Prop({ unique: true, required: true }) 
-    id_comprobante: string;
+    @Field( () => ID, { name: 'com_id' })
+    _id: string;
 
+    @Field( () => Int )
     @Prop({ required: true }) 
-    serie_comprobante: string;
+    com_serie: number;
 
+    @Field( () => Int)
+    @Prop({ required: true })
+    com_numero : number
+    
+    @Field( () => String )
+    @Prop({ required: true, enum: ['BOLETA', 'FACTURA'] }) 
+    com_tipo: string;
+
+    @Field( () => Date )
     @Prop({ required: true }) 
-    tipo_comprobante: string;
+    com_fecha_emision: Date;
 
-    @Prop({ required: true, type: Date }) 
-    fecha_emision: Date;
+    @Field( () => Usuario )
+    @Prop({ type: Types.ObjectId, ref: 'Usuario' }) 
+    usuario: string;
 
-    @Prop({ required: true }) 
-    id_usuario: string;
+    // @Prop({ required: true, type: Number}) 
+    // com_total: number;
 
-    @Prop({ required: true, type: Number}) 
-    total: number;
+    @Field( () => Venta )
+    @Prop({ type: Types.ObjectId, ref: 'Venta' }) 
+    venta: string;
+    
+    @Field( () => Boolean )
+    @Prop({ default: true }) 
+    com_estado: boolean;
 
-    @Prop({ required: true, type: Number, default: 1 }) 
-    estado: number;
+    // @Prop({ required: true, type: Number }) 
+    // createdAt: number;
 
-    @Prop({ required: true }) 
-    id_venta: string;
-
-    @Prop({ required: true, type: Number }) 
-    createdAt: number;
-
-    @Prop({ required: false, type: Number }) 
-    updatedAt?: number;
+    // @Prop({ required: false, type: Number }) 
+    // updatedAt?: number;
 }
-
 
 export const ComprobanteSchema = SchemaFactory.createForClass(Comprobante);

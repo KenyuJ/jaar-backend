@@ -22,11 +22,6 @@ export class CreateUsuarioInput {
   @IsIn( ['ADMINISTRADOR', 'CAJA'] )
   usu_tipo_usuario : string
 
-  @Field( () => Boolean, { nullable: true, defaultValue: true, description: 'El valor por defecto es TRUE.' })
-  @IsBoolean()
-  @IsNotEmpty()
-  usu_estado : boolean
-
   @Field( () => CreatePersonaInput )
   @Type( () => CreatePersonaInput )
   @ValidateNested()

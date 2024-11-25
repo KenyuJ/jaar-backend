@@ -12,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MasterModule } from './master/master.module';
 import { DetalleVentaModule } from './detalle_venta/detalle_venta.module';
 import { VentaModule } from './venta/venta.module';
+import { ComprobanteModule } from './comprobante/comprobante.module';
 
 @Module({
   imports: [
@@ -35,7 +36,9 @@ import { VentaModule } from './venta/venta.module';
 
     DetalleVentaModule,
 
-    VentaModule
+    VentaModule,
+
+    ComprobanteModule
 
   ],
   controllers: [],

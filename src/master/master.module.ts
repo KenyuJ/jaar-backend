@@ -14,5 +14,6 @@ import { Master, masterSchema } from './entities/master.entity';
     ])
   ],
   providers: [MasterResolver, MasterService],
+  exports: [MongooseModule, MasterService]
 })
 export class MasterModule {}

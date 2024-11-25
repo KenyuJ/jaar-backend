@@ -30,7 +30,7 @@ export class Producto extends Document {
   pro_cantidad : number
 
   @Field( () => Boolean )
-  @Prop()
+  @Prop({ default: true })
   pro_estado : boolean
 
   @Field( () => String )
