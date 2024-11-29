@@ -194,14 +194,14 @@ input UpdateProductoInput {
 input CreateUsuarioInput {
   usu_nombre: String!
   usu_clave: String!
-  usu_tipo: PersonaTipo!
+  usu_tipo: UsuarioTipo!
   persona: CreatePersonaInput!
 }
 
 input CreatePersonaInput {
   per_nombre: String!
   per_apellido: String!
-  per_sexo: String!
+  per_sexo: PersonaGenero!
   per_telefono: String!
   per_email: String!
   per_direccion: String
@@ -215,7 +215,7 @@ input CreatePersonaInput {
 input UpdateUsuarioInput {
   usu_nombre: String
   usu_clave: String
-  usu_tipo: PersonaTipo
+  usu_tipo: UsuarioTipo
   persona: UpdatePersonaInput
   _id: ID!
 }
@@ -223,7 +223,7 @@ input UpdateUsuarioInput {
 input UpdatePersonaInput {
   per_nombre: String
   per_apellido: String
-  per_sexo: String
+  per_sexo: PersonaGenero
   per_telefono: String
   per_email: String
   per_direccion: String

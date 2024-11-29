@@ -1,5 +1,6 @@
 import { Field, InputType,} from '@nestjs/graphql';
 import { IsBoolean, IsEmail, IsEnum, IsIn, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import { PersonaGenero } from 'src/common/enums/persona';
 import { PersonaRol } from 'src/common/enums/persona/persona-rol.enum';
 import { PersonaTipoDocumento } from 'src/common/enums/persona/persona-tipo-documento.enum';
 import { PersonaTipo } from 'src/common/enums/persona/persona-tipo.enum';
@@ -17,9 +18,9 @@ export class CreatePersonaInput {
     @MinLength(1)
     per_apellido : string
 
-    @Field(() => String)
+    @Field(() => PersonaGenero)
     @IsString()
-    @IsEnum(PersonaTipoDocumento)
+    @IsEnum(PersonaGenero)
     per_sexo : string
 
     @Field(() => String)

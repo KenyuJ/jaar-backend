@@ -1,6 +1,6 @@
 import { Field, ID, InputType } from "@nestjs/graphql";
 import { Type } from "class-transformer";
-import { IsEnum, IsIn, IsString, MinLength, ValidateNested } from "class-validator";
+import { IsEnum, IsString, MinLength, ValidateNested } from "class-validator";
 import { CreateDetalleVentaInput } from "src/detalle_venta/dto/create-detalle_venta.input";
 import { VentaTipoPago } from "src/common/enums/venta/venta-tipo-pago.enum";
 

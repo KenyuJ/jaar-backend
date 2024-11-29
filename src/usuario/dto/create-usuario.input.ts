@@ -1,7 +1,7 @@
 import { InputType, Int, Field, ID } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
-import { IsBoolean, IsEnum, IsIn, IsNotEmpty, IsString, MinLength, ValidateNested } from 'class-validator';
-import { PersonaTipo } from 'src/common/enums/persona/persona-tipo.enum';
+import { IsEnum, IsString, MinLength, ValidateNested } from 'class-validator';
+import { UsuarioTipo } from 'src/common/enums/usuario/usuario.tipo.enum';
 import { CreatePersonaInput } from 'src/persona/dto/create-persona.input';
 import { Persona } from 'src/persona/entities/persona.entity';
 
@@ -18,9 +18,9 @@ export class CreateUsuarioInput {
   @MinLength(1)
   usu_clave : string
 
-  @Field( () => PersonaTipo )
+  @Field( () => UsuarioTipo )
   @IsString()
-  @IsEnum(PersonaTipo)
+  @IsEnum(UsuarioTipo)
   usu_tipo : string
 
   @Field( () => CreatePersonaInput )
