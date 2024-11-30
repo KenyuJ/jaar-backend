@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { UsuarioTipo } from 'src/common/enums/usuario/usuario.tipo.enum';
+import { UsuarioTipo } from 'src/common/enums/usuario/usuario-tipo.enum';
 import { Persona } from 'src/persona/entities/persona.entity';
 
 @ObjectType()

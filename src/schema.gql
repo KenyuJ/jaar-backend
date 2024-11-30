@@ -126,6 +126,11 @@ enum ComprobanteTipo {
   FACTURA
 }
 
+type AuthResponse {
+  token: String!
+  usuario: Usuario!
+}
+
 type Query {
   """Retorna todos los productos de estado TRUE"""
   ProductAll: [Producto!]!
@@ -148,6 +153,7 @@ type Query {
   VentaAll: [Venta!]!
   VentaFindOne(id: String!): Venta!
   ComprobanteAll: [Comprobante!]!
+  revalidateToken: AuthResponse!
 }
 
 type Mutation {
@@ -158,6 +164,7 @@ type Mutation {
   ProductRemove(id: String!): Producto!
   UsuarioCreate(createUsuarioInput: CreateUsuarioInput!): Usuario!
   UsuarioUpdate(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
+  UsuarioRemove(id: String!): Usuario!
   MasterCreate(createMasterInput: CreateMasterInput!): Master!
 
   """Actualiza una configuración por su ID"""
@@ -166,6 +173,7 @@ type Mutation {
   VentaCreate(createVentaInput: CreateVentaInput!): Venta!
   ComprobanteCreate(createComprobanteInput: CreateComprobanteInput!): Comprobante!
   ComprobanteRemove(id: String!): Comprobante!
+  login(loginInput: LoginInput!): AuthResponse!
 }
 
 input CreateProductoInput {
@@ -263,4 +271,9 @@ input CreateComprobanteInput {
   mas_id: ID!
   usu_id: ID!
   ven_id: ID!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
 }

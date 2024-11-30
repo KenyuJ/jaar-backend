@@ -34,8 +34,9 @@ export class UsuarioResolver {
     return await this.usuarioService.update(updateUsuarioInput);
   }
 
-  // @Mutation(() => Usuario)
-  // removeUsuario(@Args('id', { type: () => Int }) id: number) {
-  //   return this.usuarioService.remove(id);
-  // }
+  @Mutation(() => Usuario, { name: 'UsuarioRemove' })
+  async removeUsuario(@Args('id') id: string) : Promise<Usuario>
+  {
+    return await this.usuarioService.remove(id);
+  }
 }

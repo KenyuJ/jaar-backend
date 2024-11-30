@@ -1,7 +1,7 @@
 import { InputType, Int, Field, ID } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
 import { IsEnum, IsString, MinLength, ValidateNested } from 'class-validator';
-import { UsuarioTipo } from 'src/common/enums/usuario/usuario.tipo.enum';
+import { UsuarioTipo } from 'src/common/enums/usuario/usuario-tipo.enum';
 import { CreatePersonaInput } from 'src/persona/dto/create-persona.input';
 import { Persona } from 'src/persona/entities/persona.entity';
 

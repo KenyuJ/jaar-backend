@@ -52,6 +52,14 @@ export class UsuarioService {
     return usuario
   }
 
+  async findOneByUsername(username: string) 
+  {
+    const usuario = await this.usuarioModel.findOne({ usu_nombre: username })
+    if (!usuario) throw new NotFoundException(`El usuario con el nombre ${username} no se encuentra.`)
+
+    return usuario
+  }
+
   async update(updateUsuarioInput: UpdateUsuarioInput) : Promise<Usuario>
   {
     const { _id, persona, ...data } = updateUsuarioInput
@@ -72,7 +80,16 @@ export class UsuarioService {
     return usuarioUpdated
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} usuario`;
-  // }
+  async remove(id: string) : Promise<Usuario>
+  {
+    const usuario = await this.findOne(id)
+    
+    const usuarioDeleted = await this.usuarioModel.findByIdAndUpdate(
+      usuario._id,
+      { usu_estado: false },
+      { new: true }
+    )
+
+    return usuarioDeleted;
+  }
 }
