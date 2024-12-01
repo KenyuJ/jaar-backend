@@ -40,7 +40,7 @@ export class MasterService {
     return listMaster
   }
 
-  async findOne(term: string)
+  async findOne(term: string) : Promise<Master>
   {
     let master;
 
@@ -82,5 +82,18 @@ export class MasterService {
     const masterDeleted = await this.masterModel.findByIdAndDelete(id, { new : true })
 
     return masterDeleted
+  }
+
+  async incrementNroComprobante(id: string)
+  {
+    const configMaster = await this.findOne(id);
+
+    const incremento = configMaster.mas_nro+1
+  
+    await this.masterModel.findByIdAndUpdate(
+      id,
+      { mas_nro : incremento },
+      { new: true }
+    )
   }
 }

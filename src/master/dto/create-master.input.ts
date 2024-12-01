@@ -19,6 +19,6 @@ export class CreateMasterInput {
   @IsInt({ message: 'Ingrese un número entero.' })
   @IsPositive({ message: 'Ingrese un número positivo.' })
   @Min(1, { message: 'Ingrese un mayor que cero.' })
-  mas_incremento: number
+  mas_nro: number
 
 }

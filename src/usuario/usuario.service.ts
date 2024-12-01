@@ -1,4 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+
+import * as  bcrypt from 'bcrypt'
+
 import { CreateUsuarioInput } from './dto/create-usuario.input';
 import { UpdateUsuarioInput } from './dto/update-usuario.input';
 
@@ -19,7 +22,7 @@ export class UsuarioService {
 
   async create(createUsuarioInput: CreateUsuarioInput) : Promise<Usuario>
   {
-    const { persona , ...data } = createUsuarioInput
+    const { persona , usu_clave, ...data } = createUsuarioInput
 
     const usuarioexist = await this.usuarioModel.findOne({ usu_nombre: data.usu_nombre })
     if(usuarioexist) throw new BadRequestException(`El usuario con el nombre ${data.usu_nombre} ya existe.`)
@@ -28,6 +31,7 @@ export class UsuarioService {
 
     const newUsuario = new this.usuarioModel({
       ...data,
+      usu_clave: bcrypt.hashSync(usu_clave, 10),
       persona : newPersona
     })
 
@@ -44,6 +48,14 @@ export class UsuarioService {
     const usuario = await this.usuarioModel.findById(id).populate('persona').exec()
 
     if (!usuario) throw new NotFoundException(`El usuario con el id ${id} no se encuentra.`)
+
+    return usuario
+  }
+
+  async findOneByUsername(username: string) 
+  {
+    const usuario = await this.usuarioModel.findOne({ usu_nombre: username })
+    if (!usuario) throw new NotFoundException(`El usuario con el nombre ${username} no se encuentra.`)
 
     return usuario
   }
@@ -68,7 +80,16 @@ export class UsuarioService {
     return usuarioUpdated
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} usuario`;
-  // }
+  async remove(id: string) : Promise<Usuario>
+  {
+    const usuario = await this.findOne(id)
+    
+    const usuarioDeleted = await this.usuarioModel.findByIdAndUpdate(
+      usuario._id,
+      { usu_estado: false },
+      { new: true }
+    )
+
+    return usuarioDeleted;
+  }
 }

@@ -17,7 +17,7 @@ export class DetalleVentaService {
 
   async create(createDetalleVentaInput: CreateDetalleVentaInput) : Promise<DetalleVenta>
   {
-    const { pro_id, pro_cantidad, det_estado } = createDetalleVentaInput
+    const { pro_id, pro_cantidad} = createDetalleVentaInput
     const producto = await this.productoService.findOne(pro_id)
 
     const subtotal_detalle_venta = producto.pro_precio;
@@ -30,8 +30,7 @@ export class DetalleVentaService {
       pro_cantidad: pro_cantidad,
       pro_precio: producto.pro_precio,
       det_subtotal: subtotal_detalle_venta,
-      det_total: total_detalle_venta,
-      det_estado: det_estado
+      det_total: total_detalle_venta
     })
 
     return await newDetalleVenta.save()

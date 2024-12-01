@@ -19,7 +19,7 @@ export class Master extends Document {
 
   @Field( () => Int )
   @Prop({ required: true })
-  mas_incremento: number
+  mas_nro: number
 
 }
 

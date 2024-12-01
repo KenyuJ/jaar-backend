@@ -12,11 +12,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MasterModule } from './master/master.module';
 import { DetalleVentaModule } from './detalle_venta/detalle_venta.module';
 import { VentaModule } from './venta/venta.module';
+import { ComprobanteModule } from './comprobante/comprobante.module';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
 
-    MongooseModule.forRoot('mongodb://localhost:27017/jaar'),
+    ConfigModule.forRoot(),
+    
+    MongooseModule.forRoot(process.env.DB_URL),
 
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -35,7 +40,11 @@ import { VentaModule } from './venta/venta.module';
 
     DetalleVentaModule,
 
-    VentaModule
+    VentaModule,
+
+    ComprobanteModule,
+
+    AuthModule
 
   ],
   controllers: [],

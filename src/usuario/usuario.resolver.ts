@@ -3,6 +3,7 @@ import { UsuarioService } from './usuario.service';
 import { Usuario } from './entities/usuario.entity';
 import { CreateUsuarioInput } from './dto/create-usuario.input';
 import { UpdateUsuarioInput } from './dto/update-usuario.input';
+import { PipeMongoID } from 'src/common/pipes/mongo-id.pipe';
 
 @Resolver(() => Usuario)
 export class UsuarioResolver {
@@ -22,7 +23,7 @@ export class UsuarioResolver {
   }
 
   @Query(() => Usuario, { name: 'UsuarioFindOne', description: 'Retonar un usuario por su ID.' })
-  async findOne(@Args('id', { type: () => String }) id: string) : Promise<Usuario>
+  async findOne(@Args('id', PipeMongoID) id: string) : Promise<Usuario>
   {
     return await this.usuarioService.findOne(id);
   }
@@ -33,8 +34,9 @@ export class UsuarioResolver {
     return await this.usuarioService.update(updateUsuarioInput);
   }
 
-  // @Mutation(() => Usuario)
-  // removeUsuario(@Args('id', { type: () => Int }) id: number) {
-  //   return this.usuarioService.remove(id);
-  // }
+  @Mutation(() => Usuario, { name: 'UsuarioRemove' })
+  async removeUsuario(@Args('id') id: string) : Promise<Usuario>
+  {
+    return await this.usuarioService.remove(id);
+  }
 }

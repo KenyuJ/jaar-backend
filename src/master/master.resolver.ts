@@ -21,8 +21,9 @@ export class MasterResolver {
   }
 
   @Query(() => Master, { name: 'MasterFindOne' , description: 'Devuelve una configuración por su ID o Nombre.' })
-  findOne(@Args('term', { type: () => String }) term: string) {
-    return this.masterService.findOne(term);
+  async findOne(@Args('term', { type: () => String }) term: string) : Promise<Master>
+  {
+    return await this.masterService.findOne(term);
   }
 
   @Mutation(() => Master, { name: 'MasterUpdate' ,description: 'Actualiza una configuración por su ID'})
@@ -32,7 +33,8 @@ export class MasterResolver {
   }
 
   @Mutation(() => Master, { name: 'MasterRemove' })
-  removeMaster(@Args('id', { type: () => String }) id: string) {
-    return this.masterService.remove(id);
+  async removeMaster(@Args('id', { type: () => String }) id: string) : Promise<Master>
+  {
+    return await this.masterService.remove(id);
   }
 }

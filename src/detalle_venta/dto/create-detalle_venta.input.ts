@@ -1,19 +1,17 @@
 import { InputType, Int, Field, ID } from '@nestjs/graphql';
-import { IsBoolean, Min, MinLength } from 'class-validator';
+import { IsMongoId, IsString, Min, MinLength } from 'class-validator';
 
 @InputType()
 export class CreateDetalleVentaInput {
 
   @Field( () => ID )
+  @IsString()
   @MinLength(1)
+  @IsMongoId()
   pro_id : string
 
   @Field( () => Int)
   @Min(1)
   pro_cantidad : number
-
-  @Field( () => Boolean, { nullable: true, defaultValue: true, description: 'El valor por defecto es TRUE.' })
-  @IsBoolean()
-  det_estado : boolean
 
 }
