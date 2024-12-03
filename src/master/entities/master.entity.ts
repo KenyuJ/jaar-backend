@@ -13,9 +13,9 @@ export class Master extends Document {
   @Prop({ required: true, unique: true })
   mas_nombre: string;
 
-  @Field( () => Int )
+  @Field( () => String )
   @Prop({ required: true })
-  mas_serie: number
+  mas_serie: string
 
   @Field( () => Int )
   @Prop({ required: true })

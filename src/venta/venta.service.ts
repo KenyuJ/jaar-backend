@@ -6,6 +6,7 @@ import { CreateVentaInput } from './dto/create-venta.input';
 import { DetalleVentaService } from 'src/detalle_venta/detalle_venta.service';
 import { UsuarioService } from 'src/usuario/usuario.service';
 import { CreateDetalleVentaInput } from 'src/detalle_venta/dto/create-detalle_venta.input';
+import { ProductoService } from 'src/producto/producto.service';
 
 @Injectable()
 export class VentaService {
@@ -14,7 +15,8 @@ export class VentaService {
         @InjectModel(Venta.name)
         private readonly ventaModel : Model<Venta>,
         private readonly detalleVentaService : DetalleVentaService,
-        private readonly usuarioService : UsuarioService
+        private readonly usuarioService : UsuarioService,
+        private readonly productoService: ProductoService
     ){}
 
     async findAll() : Promise<Venta[]>
@@ -63,6 +65,15 @@ export class VentaService {
         // Validados si existe el usuario
         const usuario = await this.usuarioService.findOne(createVentaInput.usu_id)
 
+        // Validamos que todos los productos recibios tengan stock antes de comenzar con el registro de la venta y detalleventa
+        for ( const detalle of detalle_venta )
+        {
+            const producto = await this.productoService.findOne(detalle.pro_id)
+
+            if( detalle.pro_cantidad > producto.pro_cantidad )
+                throw new NotFoundException(`El producto ${ producto.pro_nombre } no cuenta con el stock suficiente.`)
+        }
+         
         // Instancia de un documento de VENTA
         const venta = new this.ventaModel({
             ven_tipo_pago: createVentaInput.ven_tipo_pago,
@@ -73,7 +84,7 @@ export class VentaService {
         });
 
         let total_venta = 0;
-        // Recorrer array de detalles venta
+        // Recorrer array de detalles venta para insertar
         for (const detalle of detalle_venta)
         {
             // Inserccion de detalle venta

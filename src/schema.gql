@@ -75,7 +75,7 @@ enum UsuarioTipo {
 type Master {
   mas_id: ID!
   mas_nombre: String!
-  mas_serie: Int!
+  mas_serie: String!
   mas_nro: Int!
 }
 
@@ -112,7 +112,7 @@ enum VentaTipoPago {
 
 type Comprobante {
   com_id: ID!
-  com_serie: Int!
+  com_serie: String!
   com_numero: Int!
   com_tipo: ComprobanteTipo!
   com_fecha_emision: DateTime!
@@ -216,7 +216,7 @@ input CreatePersonaInput {
   per_razon_social: String!
   per_tipo: PersonaTipo!
   per_rol: PersonaRol!
-  per_tipo_identificacion: String!
+  per_tipo_identificacion: PersonaTipoDocumento!
   per_num_identificacion: String!
 }
 
@@ -238,20 +238,20 @@ input UpdatePersonaInput {
   per_razon_social: String
   per_tipo: PersonaTipo
   per_rol: PersonaRol
-  per_tipo_identificacion: String
+  per_tipo_identificacion: PersonaTipoDocumento
   per_num_identificacion: String
   _id: ID
 }
 
 input CreateMasterInput {
   mas_nombre: String!
-  mas_serie: Int!
+  mas_serie: String!
   mas_nro: Int!
 }
 
 input UpdateMasterInput {
   mas_nombre: String
-  mas_serie: Int
+  mas_serie: String
   mas_nro: Int
   _id: ID!
 }
@@ -269,7 +269,6 @@ input CreateDetalleVentaInput {
 
 input CreateComprobanteInput {
   mas_id: ID!
-  usu_id: ID!
   ven_id: ID!
 }
 

@@ -21,7 +21,7 @@ export class AuthResolver {
 
     @Query( () => AuthResponse )
     @UseGuards( JwtAuthGuard )
-    revalidateToken( @UsuarioActual( UsuarioTipo.CAJA ) usuario : Usuario ) : AuthResponse
+    revalidateToken( @UsuarioActual([ UsuarioTipo.ADMINISTRADOR, UsuarioTipo.CAJA ]) usuario : Usuario ) : AuthResponse
     {
         return this.authService.revalidateToken(usuario)
     }
