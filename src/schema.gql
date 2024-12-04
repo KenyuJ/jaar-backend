@@ -13,8 +13,15 @@ type Producto {
   pro_seccion: String!
 }
 
-type Talla {
-  numero: Int!
+type DetalleVenta {
+  det_id: ID!
+  det_subtotal: Float!
+  det_total: Float!
+  det_estado: Boolean!
+  producto: Producto
+  pro_talla: Int!
+  pro_cantidad: Int!
+  pro_precio: Float!
 }
 
 type Persona {
@@ -72,24 +79,6 @@ enum UsuarioTipo {
   ADMINISTRADOR
 }
 
-type Master {
-  mas_id: ID!
-  mas_nombre: String!
-  mas_serie: String!
-  mas_nro: Int!
-}
-
-type DetalleVenta {
-  det_id: ID!
-  det_subtotal: Float!
-  det_total: Float!
-  det_estado: Boolean!
-  producto: Producto
-  pro_talla: Int!
-  pro_cantidad: Int!
-  pro_precio: Float!
-}
-
 type Venta {
   ven_id: ID!
   ven_fecha: DateTime!
@@ -108,6 +97,31 @@ scalar DateTime
 enum VentaTipoPago {
   EFECTIVO
   CREDITO
+}
+
+type Kardex {
+  _id: ID!
+  kar_tipo_movimiento: KardexTipoMovimiento!
+  kar_fecha_movimiento: DateTime!
+  producto: Producto
+  venta: Venta
+}
+
+"""Tipo de movimientos permitidos para Kardex."""
+enum KardexTipoMovimiento {
+  ENTRADA
+  SALIDA
+}
+
+type Talla {
+  numero: Int!
+}
+
+type Master {
+  mas_id: ID!
+  mas_nombre: String!
+  mas_serie: String!
+  mas_nro: Int!
 }
 
 type Comprobante {
@@ -140,6 +154,7 @@ type Query {
 
   """Retorna todas las tallas disponibles."""
   TallaAll: [Talla!]!
+  KardexAll: [Kardex!]!
 
   """Retornar todos los usuarios con su relación de Persona de estado TRUE."""
   UsuariosAll: [Usuario!]!

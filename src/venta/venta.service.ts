@@ -7,6 +7,7 @@ import { DetalleVentaService } from 'src/detalle_venta/detalle_venta.service';
 import { UsuarioService } from 'src/usuario/usuario.service';
 import { CreateDetalleVentaInput } from 'src/detalle_venta/dto/create-detalle_venta.input';
 import { ProductoService } from 'src/producto/producto.service';
+import { KardexService } from 'src/kardex/kardex.service';
 
 @Injectable()
 export class VentaService {
@@ -16,7 +17,8 @@ export class VentaService {
         private readonly ventaModel : Model<Venta>,
         private readonly detalleVentaService : DetalleVentaService,
         private readonly usuarioService : UsuarioService,
-        private readonly productoService: ProductoService
+        private readonly productoService: ProductoService,
+        private readonly kardexService : KardexService
     ){}
 
     async findAll() : Promise<Venta[]>
@@ -84,6 +86,7 @@ export class VentaService {
         });
 
         let total_venta = 0;
+
         // Recorrer array de detalles venta para insertar
         for (const detalle of detalle_venta)
         {
@@ -98,6 +101,8 @@ export class VentaService {
         }
 
         venta.ven_total = total_venta;
+
+        await this.kardexService.crearSalida({ ven_id : venta._id })
 
         return (await venta.save()).populate(['usuario', { path: 'detalle_venta', model: 'DetalleVenta' }]);
     }
