@@ -7,6 +7,7 @@ import { Producto } from './entities/producto.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { Talla } from './entities/talla.entity';
+import { KardexService } from 'src/kardex/kardex.service';
 
 @Injectable()
 export class ProductoService {
@@ -27,7 +28,8 @@ export class ProductoService {
 
   constructor(
     @InjectModel(Producto.name)
-    private readonly productoModel : Model<Producto>
+    private readonly productoModel : Model<Producto>,
+    private readonly kardexService : KardexService
   ){}
   
   async create(createProductoInput: CreateProductoInput) : Promise<Producto>
@@ -39,6 +41,8 @@ export class ProductoService {
       createProductoInput.pro_seccion = createProductoInput.pro_seccion.toUpperCase()
 
       const newProduct = await this.productoModel.create(createProductoInput)
+
+      await this.kardexService.crearEntrada({ pro_id: newProduct._id })
   
       return newProduct
     } 

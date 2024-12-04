@@ -14,8 +14,7 @@ export class ComprobanteService {
     @InjectModel(Comprobante.name)
     private readonly comprobanteModel : Model<Comprobante>,
     private readonly masterService : MasterService,
-    private readonly usuarioService : UsuarioService,
-    private readonly ventaService : VentaService,
+    private readonly ventaService : VentaService
   ){}
 
   async findAll() : Promise<Comprobante[]>
@@ -39,9 +38,8 @@ export class ComprobanteService {
 
   async create(createComprobanteInput: CreateComprobanteInput) : Promise<Comprobante>
   {
-    const { mas_id, usu_id, ven_id } = createComprobanteInput
+    const { mas_id, ven_id } = createComprobanteInput
 
-    const usuario = await this.usuarioService.findOne(usu_id)
     const venta = await this.ventaService.findOne(ven_id)
     const configMaster = await this.masterService.findOne(mas_id)
     
@@ -50,7 +48,6 @@ export class ComprobanteService {
       com_tipo: configMaster.mas_nombre,
       com_serie: configMaster.mas_serie,
       com_numero: configMaster.mas_nro,
-      usuario: usuario._id,
       venta: venta._id
     })
 

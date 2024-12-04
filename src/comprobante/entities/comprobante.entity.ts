@@ -11,9 +11,9 @@ export class Comprobante extends Document {
     @Field( () => ID, { name: 'com_id' })
     _id: string;
 
-    @Field( () => Int )
-    @Prop({ required: true }) 
-    com_serie: number;
+    @Field( () => String )
+    @Prop({ required: true })
+    com_serie: string;
 
     @Field( () => Int)
     @Prop({ required: true })
@@ -27,8 +27,8 @@ export class Comprobante extends Document {
     @Prop({ required: true }) 
     com_fecha_emision: Date;
 
-    @Prop({ type: Types.ObjectId, ref: 'Usuario' }) 
-    usuario: string;
+    // @Prop({ type: Types.ObjectId, ref: 'Usuario' }) 
+    // usuario: string;
 
     // @Prop({ required: true, type: Number}) 
     // com_total: number;
@@ -41,11 +41,6 @@ export class Comprobante extends Document {
     @Prop({ default: true }) 
     com_estado: boolean;
 
-    // @Prop({ required: true, type: Number }) 
-    // createdAt: number;
-
-    // @Prop({ required: false, type: Number }) 
-    // updatedAt?: number;
 }
 
 export const ComprobanteSchema = SchemaFactory.createForClass(Comprobante);

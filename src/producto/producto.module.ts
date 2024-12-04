@@ -4,6 +4,7 @@ import { ProductoResolver } from './producto.resolver';
 
 import { Producto, ProductoSchema } from './entities/producto.entity';
 import { MongooseModule } from '@nestjs/mongoose';
+import { KardexModule } from 'src/kardex/kardex.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { MongooseModule } from '@nestjs/mongoose';
           schema: ProductoSchema
         }
       ]
-    )
+    ),
+    KardexModule
   ],
   providers: [ProductoResolver, ProductoService],
   exports: [

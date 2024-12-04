@@ -10,11 +10,11 @@ export class CreateComprobanteInput {
     @IsMongoId()
     mas_id: string;
 
-    @Field( () => ID )
-    @IsString()
-    @MinLength(1)
-    @IsMongoId()
-    usu_id : string;
+    // @Field( () => ID )
+    // @IsString()
+    // @MinLength(1)
+    // @IsMongoId()
+    // usu_id : string;
 
     @Field( () => ID )
     @IsString()

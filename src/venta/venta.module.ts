@@ -5,6 +5,8 @@ import { VentaResolver } from './venta.resolver';
 import { VentaService } from './venta.service';
 import { DetalleVentaModule } from 'src/detalle_venta/detalle_venta.module';
 import { UsuarioModule } from 'src/usuario/usuario.module';
+import { ProductoModule } from 'src/producto/producto.module';
+import { KardexModule } from 'src/kardex/kardex.module';
 
 @Module({
     imports: [
@@ -17,7 +19,9 @@ import { UsuarioModule } from 'src/usuario/usuario.module';
         ]),
         
         DetalleVentaModule,
-        UsuarioModule
+        UsuarioModule,
+        ProductoModule,
+        KardexModule
 
     ],
     providers: [VentaResolver, VentaService],
