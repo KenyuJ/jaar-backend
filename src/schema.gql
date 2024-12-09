@@ -147,7 +147,7 @@ type AuthResponse {
 
 type Query {
   """Retorna todos los productos de estado TRUE"""
-  ProductAll: [Producto!]!
+  ProductAll(offset: Int = 0, limit: Int = 10): [Producto!]!
 
   """Retorna un producto por su ID o NOMBRE."""
   ProductFindOne(term: String!): Producto!

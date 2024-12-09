@@ -1,9 +1,10 @@
-import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ProductoService } from './producto.service';
 import { Producto } from './entities/producto.entity';
 import { CreateProductoInput } from './dto/create-producto.input';
 import { UpdateProductoInput } from './dto/update-producto.input';
 import { Talla } from './entities/talla.entity';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Resolver(() => Producto)
 export class ProductoResolver {
@@ -11,9 +12,9 @@ export class ProductoResolver {
   constructor(private readonly productoService: ProductoService) {}
   
   @Query( () => [Producto], { name: 'ProductAll', description: 'Retorna todos los productos de estado TRUE' })
-  async findAll() : Promise<Producto[]>
+  async findAll( @Args() paginationArgs: PaginationArgs  ) : Promise<Producto[]>
   {
-    return await this.productoService.findAll();
+    return await this.productoService.findAll(paginationArgs);
   }
   
   @Query( () => Producto, { name: 'ProductFindOne', description: 'Retorna un producto por su ID o NOMBRE.' })
