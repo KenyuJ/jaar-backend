@@ -9,6 +9,7 @@ import { Usuario } from './entities/usuario.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { PersonaService } from 'src/persona/persona.service';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 
 @Injectable()
@@ -38,9 +39,10 @@ export class UsuarioService {
     return await newUsuario.save()
   }
 
-  async findAll() : Promise<Usuario[]> 
+  async findAll(paginationArgs : PaginationArgs) : Promise<Usuario[]> 
   {
-    return await this.usuarioModel.find().populate('persona').exec()
+    const { limit, offset } = paginationArgs
+    return await this.usuarioModel.find().populate('persona').limit(limit).skip(offset).exec()
   }
 
   async findOne(id: string) : Promise<Usuario>
@@ -92,4 +94,9 @@ export class UsuarioService {
 
     return usuarioDeleted;
   }
+
+  async deleteData() {
+    await this.usuarioModel.deleteMany()
+  }
+    
 }

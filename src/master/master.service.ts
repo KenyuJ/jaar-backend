@@ -96,4 +96,8 @@ export class MasterService {
       { new: true }
     )
   }
+
+  async deleteData() {
+    await this.masterModel.deleteMany()
+  }
 }

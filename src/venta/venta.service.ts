@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/usuario/usuario.service';
 import { CreateDetalleVentaInput } from 'src/detalle_venta/dto/create-detalle_venta.input';
 import { ProductoService } from 'src/producto/producto.service';
 import { KardexService } from 'src/kardex/kardex.service';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Injectable()
 export class VentaService {
@@ -21,8 +22,9 @@ export class VentaService {
         private readonly kardexService : KardexService
     ){}
 
-    async findAll() : Promise<Venta[]>
+    async findAll(paginationArgs : PaginationArgs) : Promise<Venta[]>
     {
+        const { limit, offset } = paginationArgs
         const venta = await this.ventaModel.find().populate([ 
             {
                 path: 'usuario',
@@ -34,7 +36,7 @@ export class VentaService {
                 model: 'DetalleVenta',
                 populate: 'producto'
             }
-        ]);
+        ]).limit(limit).skip(offset);
 
         return venta;
     }
@@ -105,5 +107,9 @@ export class VentaService {
         await this.kardexService.crearSalida({ ven_id : venta._id })
 
         return (await venta.save()).populate(['usuario', { path: 'detalle_venta', model: 'DetalleVenta' }]);
+    }
+
+    async deleteData() {
+        await this.ventaModel.deleteMany()
     }
 }

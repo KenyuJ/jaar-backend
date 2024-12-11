@@ -23,5 +23,6 @@ import { VentaModule } from 'src/venta/venta.module';
   ],
   controllers: [],
   providers: [ComprobanteService, ComprobanteResolver],
+  exports: [MongooseModule, ComprobanteService]
 })
 export class ComprobanteModule {}

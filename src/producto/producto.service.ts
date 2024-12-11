@@ -138,4 +138,8 @@ export class ProductoService {
     return this.talla
   }
 
+  async deleteData() {
+    await this.productoModel.deleteMany()
+  }
+
 }

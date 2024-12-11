@@ -37,4 +37,8 @@ export class DetalleVentaService {
     return await newDetalleVenta.save()
   }
 
+  async deleteData() {
+    await this.detalleVentaModel.deleteMany()
+  }
+
 }

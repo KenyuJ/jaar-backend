@@ -189,6 +189,7 @@ type Mutation {
   ComprobanteCreate(createComprobanteInput: CreateComprobanteInput!): Comprobante!
   ComprobanteRemove(id: String!): Comprobante!
   login(loginInput: LoginInput!): AuthResponse!
+  ExecuteSeed: String!
 }
 
 input CreateProductoInput {

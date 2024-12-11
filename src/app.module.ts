@@ -16,6 +16,7 @@ import { ComprobanteModule } from './comprobante/comprobante.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { KardexModule } from './kardex/kardex.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -47,7 +48,9 @@ import { KardexModule } from './kardex/kardex.module';
 
     AuthModule,
 
-    KardexModule
+    KardexModule,
+
+    SeedModule
 
   ],
   controllers: [],

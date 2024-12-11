@@ -77,4 +77,8 @@ export class ComprobanteService {
 
     return comprobanteDeleted
   }
+
+  async deleteData() {
+    await this.comprobanteModel.deleteMany()
+  }
 }
