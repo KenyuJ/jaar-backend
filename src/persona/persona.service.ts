@@ -63,4 +63,8 @@ export class PersonaService {
 
     }
 
+    async deleteData() {
+        await this.personaModel.deleteMany()
+    }
+
 }

@@ -3,6 +3,7 @@ import { Venta } from './entities/venta.entity';
 import { VentaService } from './venta.service';
 import { CreateVentaInput } from './dto/create-venta.input';
 import { Query } from '@nestjs/graphql';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Resolver( () => Venta )
 export class VentaResolver {
@@ -16,9 +17,9 @@ export class VentaResolver {
     }
 
     @Query( () => [Venta], { name: 'VentaAll' } )
-    async allVentas() : Promise<Venta[]>
+    async allVentas(@Args() paginationArgs : PaginationArgs ) : Promise<Venta[]>
     {   
-        return await this.ventaService.findAll()
+        return await this.ventaService.findAll(paginationArgs)
     }
 
     @Query( () => Venta, { name: 'VentaFindOne' } )

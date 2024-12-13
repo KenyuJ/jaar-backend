@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { KardexTipoMovimiento } from 'src/common/enums/kardex/kardex-tipo-movimiento.enum';
 import { CreateKardexSalidaInput } from './dto/create-kardex-salida.input';
 import { CreateKardexEntradaInput } from './dto/create-kardex-entrada.input';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Injectable()
 export class KardexService {
@@ -40,8 +41,9 @@ export class KardexService {
     await kardex.save()
   }
 
-  async findAll() : Promise<Kardex[]>
+  async findAll(paginationArgs : PaginationArgs ) : Promise<Kardex[]>
   {
+    const { limit, offset } = paginationArgs
     const kardex = await this.kardexModel.find().populate([
       'producto',
       { 
@@ -55,17 +57,12 @@ export class KardexService {
           'usuario'
         ]    
       }
-    ])
+    ]).limit(limit).skip(offset)
 
     return kardex
   }
 
-  // async findOne(id: string) : Promise<Kardex>
-  // {
-  //   const kardex = await this.kardexModel.findById(id)
-
-  //   if( !kardex ) throw new NotFoundException(`El movimiento con el id ${id} no existe.`)
-
-  //   return kardex.populate('venta')
-  // }
+  async deleteData() {
+    await this.kardexModel.deleteMany()
+  }
 }

@@ -4,6 +4,7 @@ import { Usuario } from './entities/usuario.entity';
 import { CreateUsuarioInput } from './dto/create-usuario.input';
 import { UpdateUsuarioInput } from './dto/update-usuario.input';
 import { PipeMongoID } from 'src/common/pipes/mongo-id.pipe';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Resolver(() => Usuario)
 export class UsuarioResolver {
@@ -17,9 +18,9 @@ export class UsuarioResolver {
   }
 
   @Query(() => [Usuario], { name: 'UsuariosAll' , description: 'Retornar todos los usuarios con su relación de Persona de estado TRUE.'})
-  async findAll() : Promise<Usuario[]>
+  async findAll(@Args() paginationArgs : PaginationArgs ) : Promise<Usuario[]>
   {
-    return await this.usuarioService.findAll();
+    return await this.usuarioService.findAll(paginationArgs);
   }
 
   @Query(() => Usuario, { name: 'UsuarioFindOne', description: 'Retonar un usuario por su ID.' })

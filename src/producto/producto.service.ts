@@ -8,6 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { Talla } from './entities/talla.entity';
 import { KardexService } from 'src/kardex/kardex.service';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Injectable()
 export class ProductoService {
@@ -54,9 +55,10 @@ export class ProductoService {
     }
   }
 
-  async findAll() : Promise<Producto[]>
+  async findAll(paginationInput : PaginationArgs) : Promise<Producto[]>
   {
-    return await this.productoModel.find({ pro_estado : true })
+    const { limit , offset } = paginationInput
+    return await this.productoModel.find({ pro_estado : true }).limit(limit).skip(offset)
   }
 
   async findOne(term: string)
@@ -134,6 +136,10 @@ export class ProductoService {
 
   get Tallas() : Talla[] {
     return this.talla
+  }
+
+  async deleteData() {
+    await this.productoModel.deleteMany()
   }
 
 }

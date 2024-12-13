@@ -26,6 +26,6 @@ export class CreateUsuarioInput {
   @Field( () => CreatePersonaInput )
   @Type( () => CreatePersonaInput )
   @ValidateNested()
-  persona : Persona
+  persona : CreatePersonaInput
 
 }
