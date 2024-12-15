@@ -36,10 +36,11 @@ export class ProductoService {
   async create(createProductoInput: CreateProductoInput) : Promise<Producto>
   {
     try {
-
+      
       createProductoInput.pro_nombre = createProductoInput.pro_nombre.toUpperCase()
       createProductoInput.pro_marca = createProductoInput.pro_marca.toUpperCase()
       createProductoInput.pro_seccion = createProductoInput.pro_seccion.toUpperCase()
+      createProductoInput.pro_color = createProductoInput.pro_color.toUpperCase()
 
       const newProduct = await this.productoModel.create(createProductoInput)
 

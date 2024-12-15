@@ -57,8 +57,6 @@ export class UsuarioService {
   async findOneByUsername(username: string) 
   {
     const usuario = await this.usuarioModel.findOne({ usu_nombre: username })
-    if (!usuario) throw new NotFoundException(`El usuario con el nombre ${username} no se encuentra.`)
-
     return usuario
   }
 

@@ -35,4 +35,9 @@ export class CreateProductoInput {
   @MinLength(1, { message: 'Ingrese como minimo 1 caracter para el nombre de la sección.' })
   pro_seccion : string
 
+  @Field( () => String )
+  @IsString()
+  @MinLength(1, { message: 'Ingrese como minimo 1 caracter para el nombre para el color.' })
+  pro_color : string
+
 }

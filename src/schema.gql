@@ -9,6 +9,7 @@ type Producto {
   pro_precio: Float!
   pro_talla: Int!
   pro_cantidad: Int!
+  pro_color: String!
   pro_estado: Boolean!
   pro_seccion: String!
 }
@@ -154,10 +155,10 @@ type Query {
 
   """Retorna todas las tallas disponibles."""
   TallaAll: [Talla!]!
-  KardexAll: [Kardex!]!
+  KardexAll(offset: Int = 0, limit: Int = 10): [Kardex!]!
 
   """Retornar todos los usuarios con su relación de Persona de estado TRUE."""
-  UsuariosAll: [Usuario!]!
+  UsuariosAll(offset: Int = 0, limit: Int = 10): [Usuario!]!
 
   """Retonar un usuario por su ID."""
   UsuarioFindOne(id: String!): Usuario!
@@ -165,7 +166,7 @@ type Query {
 
   """Devuelve una configuración por su ID o Nombre."""
   MasterFindOne(term: String!): Master!
-  VentaAll: [Venta!]!
+  VentaAll(offset: Int = 0, limit: Int = 10): [Venta!]!
   VentaFindOne(id: String!): Venta!
   ComprobanteAll: [Comprobante!]!
   revalidateToken: AuthResponse!
@@ -189,6 +190,11 @@ type Mutation {
   ComprobanteCreate(createComprobanteInput: CreateComprobanteInput!): Comprobante!
   ComprobanteRemove(id: String!): Comprobante!
   login(loginInput: LoginInput!): AuthResponse!
+
+  """
+  Llenara la bd con datos de prueba para las tablas de Productos, Usuarios, Master y Ventas.
+                                                                  Tambien automaticamente se generarán registros para Kardex: ENTRADAS y SALIDAS de Productos.
+  """
   ExecuteSeed: String!
 }
 
@@ -201,6 +207,7 @@ input CreateProductoInput {
   pro_talla: Int!
   pro_cantidad: Int = 0
   pro_seccion: String!
+  pro_color: String!
 }
 
 input UpdateProductoInput {
@@ -212,6 +219,7 @@ input UpdateProductoInput {
   pro_talla: Int
   pro_cantidad: Int = 0
   pro_seccion: String
+  pro_color: String
   _id: ID!
 }
 
