@@ -32,7 +32,7 @@ export class SeedService {
             const users = await this.loadUsersBD()
             const products = await this.loadProductsBD()
             await this.loadMasterBD()
-            // await this.loadVentaBD(users, products)
+            await this.loadVentaBD(users, products)
             
             return "SEMILLA EJECUTADA";
 
@@ -89,7 +89,7 @@ export class SeedService {
         }
     }
 
-/*  async loadVentaBD(usu_ids : string[], pro_ids : string[]) {
+    async loadVentaBD(usu_ids : string[], pro_ids : string[]) {
 
         const ventasSeed = VENTA_SEED(usu_ids[0], pro_ids[0])
 
@@ -102,6 +102,6 @@ export class SeedService {
             
             await this.ventaService.create(newVenta[i])
         }
-    } */
+    }
 
 }

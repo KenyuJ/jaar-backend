@@ -29,6 +29,10 @@ export class Producto extends Document {
   @Prop()
   pro_cantidad : number
 
+  @Field( () => String)
+  @Prop()
+  pro_color : string
+
   @Field( () => Boolean )
   @Prop({ default: true })
   pro_estado : boolean

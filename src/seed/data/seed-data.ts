@@ -71,6 +71,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 42,
       pro_seccion: 'Calzado Deportivo',
       pro_cantidad: 200,
+      pro_color: 'Rojo'
     },
     {
       pro_nombre: 'Adidas Ultraboost 23',
@@ -79,6 +80,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 43,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 150,
+      pro_color: 'Azul'
     },
     {
       pro_nombre: 'Puma RS-X3 Puzzle',
@@ -87,6 +89,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 41,
       pro_seccion: 'Zapatillas Casual',
       pro_cantidad: 250,
+      pro_color: 'Blanco'
     },
     {
       pro_nombre: 'Reebok Nano X2',
@@ -95,6 +98,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 44,
       pro_seccion: 'Calzado CrossFit',
       pro_cantidad: 100,
+      pro_color: 'Gris'
     },
     {
       pro_nombre: 'Under Armour HOVR Phantom 3',
@@ -103,6 +107,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 45,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 120,
+      pro_color: 'Rojo'
     },
     {
       pro_nombre: 'New Balance 990v5',
@@ -111,6 +116,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 40,
       pro_seccion: 'Zapatillas Lifestyle',
       pro_cantidad: 80,
+      pro_color: 'Negro'
     },
     {
       pro_nombre: 'Asics Gel-Kayano 29',
@@ -119,6 +125,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 46,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 140,
+      pro_color: '"Blanco'
     },
     {
       pro_nombre: 'Saucony Endorphin Speed 3',
@@ -127,6 +134,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 42,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 110,
+      pro_color: 'Amarillo'
     },
     {
       pro_nombre: 'Nike Zoom Freak 5',
@@ -135,6 +143,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 43,
       pro_seccion: 'Zapatillas Baloncesto',
       pro_cantidad: 200,
+      pro_color: 'Gris'
     },
     {
       pro_nombre: 'Adidas X Speedportal 1',
@@ -143,6 +152,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 44,
       pro_seccion: 'Zapatillas Fútbol',
       pro_cantidad: 90,
+      pro_color: 'Verde'
     },
     {
       pro_nombre: 'Nike React Infinity Run 3',
@@ -151,6 +161,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 40,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 180,
+      pro_color: 'Naranja'
     },
     {
       pro_nombre: 'Under Armour Charged Bandit 7',
@@ -159,6 +170,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 42,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 140,
+      pro_color: 'Verde'
     },
     {
       pro_nombre: 'Puma Future Rider',
@@ -167,6 +179,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 41,
       pro_seccion: 'Zapatillas Lifestyle',
       pro_cantidad: 160,
+      pro_color: 'Negro'
     },
     {
       pro_nombre: 'Adidas Predator Edge',
@@ -175,6 +188,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 44,
       pro_seccion: 'Zapatillas Fútbol',
       pro_cantidad: 130,
+      pro_color: 'Azul'
     },
     {
       pro_nombre: 'Reebok Classic Leather Legacy',
@@ -183,6 +197,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 40,
       pro_seccion: 'Zapatillas Casual',
       pro_cantidad: 200,
+      pro_color: 'Rojo'
     },
     {
       pro_nombre: 'Asics Gel-Nimbus 24',
@@ -191,6 +206,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 43,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 110,
+      pro_color: 'Azul'
     },
     {
       pro_nombre: 'New Balance FuelCell Rebel V2',
@@ -199,6 +215,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 44,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 140,
+      pro_color: 'Blanco'
     },
     {
       pro_nombre: 'Nike Zoom Pegasus Turbo 2',
@@ -207,6 +224,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 45,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 90,
+      pro_color: 'Gris'
     },
     {
       pro_nombre: 'Saucony Triumph 19',
@@ -215,6 +233,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 46,
       pro_seccion: 'Zapatillas Running',
       pro_cantidad: 70,
+      pro_color: 'Naranja'
     },
     {
       pro_nombre: 'Puma Caliber',
@@ -223,6 +242,7 @@ export const PRODUCTS_SEED: CreateProductoInput[] = [
       pro_talla: 43,
       pro_seccion: 'Zapatillas Lifestyle',
       pro_cantidad: 120,
+      pro_color: 'Rojo'
     },
 ];
   

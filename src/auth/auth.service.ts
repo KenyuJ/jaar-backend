@@ -20,6 +20,8 @@ export class AuthService {
 
         const usuario = await this.usuarioService.findOneByUsername(username)
 
+        if(!usuario) throw new BadRequestException(`EL usuario o la clave es incorrecta.`)
+
         if ( !bcrypt.compareSync(password, usuario.usu_clave ) ) throw new BadRequestException(`EL usuario o la clave es incorrecta.`)
 
         const token = this.jwtService.sign({ id: usuario._id })
